@@ -1,0 +1,1 @@
+/Users/sabin/code/rust/rust-crud/migration/target/debug/migration: /Users/sabin/code/rust/rust-crud/migration/src/lib.rs /Users/sabin/code/rust/rust-crud/migration/src/m20260605_200026_create_user_table.rs /Users/sabin/code/rust/rust-crud/migration/src/main.rs
