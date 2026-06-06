@@ -1,7 +1,7 @@
 use actix_web::{Responder, get, web};
 use sea_orm::{ConnectionTrait, Statement};
 
-use crate::utils::{api_response::{self, ApiResponse}, app_state::{self, AppState}};
+use crate::utils::{api_response::{self}, app_state::AppState};
 
 #[get("/hello/{name}")]
 pub async fn greet(name: web::Path<String>) -> impl Responder {
