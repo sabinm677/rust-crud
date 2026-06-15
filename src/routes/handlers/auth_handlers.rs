@@ -6,7 +6,7 @@ use sea_orm::{ActiveModelTrait, ActiveValue::Set, ColumnTrait, Condition, Entity
 use serde::{Deserialize, Serialize};
 use sha256::digest;
 
-use crate::utils::{api_response, app_state};
+use crate::utils::{api_response, app_state, jwt::encode_jwt};
 
 #[derive(Serialize, Deserialize)]
 struct RegisterModel {
@@ -51,7 +51,11 @@ pub async fn login(
         return api_response::ApiResponse::new(401, format!("{}", "User Not Found".to_string()))
     }
 
-    api_response::ApiResponse::new(200, format!("{}", user.unwrap().name))
+    let user_data = user.unwrap();
+
+    let jwt = encode_jwt(user_data.email, user_data.id).unwrap();
+    
+    api_response::ApiResponse::new(200, format!("{{ \"token\": \"{}\" }}", jwt))
 }
 
 
